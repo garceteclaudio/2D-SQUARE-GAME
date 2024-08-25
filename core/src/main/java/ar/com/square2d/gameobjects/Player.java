@@ -18,7 +18,7 @@ public class Player extends GameObject {
     private static final int SCREEN_WIDTH = DIMENSION.WIDTH;
     private static final int SCREEN_HEIGHT = DIMENSION.HEIGHT;
     private Rectangle playerRectangle;
-    private float countCollectable;
+    private float pickupItem;
 
     public Player() {
         xPosition = 350;
@@ -174,12 +174,12 @@ public class Player extends GameObject {
         }
     }
 
-    public float getCountCollectable() {
-        return countCollectable;
+    public float getPickupItem() {
+        return pickupItem;
     }
 
-    public void setCountCollectable(int countCollectable) {
-        this.countCollectable += countCollectable;
+    public void setPickupItem(int pickupItem) {
+        this.pickupItem += pickupItem;
     }
 
     public float getxPosition() {

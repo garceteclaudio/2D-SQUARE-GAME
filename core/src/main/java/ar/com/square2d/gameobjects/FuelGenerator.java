@@ -32,7 +32,7 @@ public class FuelGenerator extends GameObject{
             Fuel fuel = fuelIterator.next();
             if (rectangle.overlaps(playerRectangle)) {
                 // Elimina el cuadrado colisionado de las listas
-                player.setCountCollectable(1);
+                player.setPickupItem(1);
                 rectangleIterator.remove();
                 fuelIterator.remove();
             }
