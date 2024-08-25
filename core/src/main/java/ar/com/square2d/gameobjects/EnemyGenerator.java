@@ -1,5 +1,6 @@
 package ar.com.square2d.gameobjects;
 
+import ar.com.square2d.utils.DIMENSION;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -15,10 +16,10 @@ public class EnemyGenerator extends GameObject{
     public EnemyGenerator(int enemyQuantity){
         enemies = new ArrayList<Enemy>();
         for (int i=1; i<=enemyQuantity;i++){
-            float randomFloatX = random.nextFloat() * 600;
-            float randomFloatY = random.nextFloat() * 600;
-            float randomFloatSpeedX = random.nextFloat() * 300;
-            float randomFloatSpeedY = random.nextFloat() * 420;
+            float randomFloatX = random.nextFloat() * DIMENSION.HEIGHT;
+            float randomFloatY = random.nextFloat() * DIMENSION.HEIGHT;
+            float randomFloatSpeedX = random.nextFloat() * 250;
+            float randomFloatSpeedY = random.nextFloat() * 360;
             enemies.add(new Enemy(randomFloatX,randomFloatY,randomFloatSpeedX,randomFloatSpeedY, generateRandomColor()));
         }
     }

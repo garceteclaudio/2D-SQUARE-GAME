@@ -1,5 +1,6 @@
 package ar.com.square2d.gameobjects;
 
+import ar.com.square2d.utils.DIMENSION;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class FuelGenerator extends GameObject{
         fuels = new ArrayList<Fuel>();
         fuelGeneratorRectangleList = new ArrayList<Rectangle>();
         for (int i=1; i<=fuelQuantity;i++){
-            float randomFloatX = random.nextFloat() * 600;
-            float randomFloatY = random.nextFloat() * 600;
+            float randomFloatX = random.nextFloat() * DIMENSION.HEIGHT;
+            float randomFloatY = random.nextFloat() * DIMENSION.HEIGHT;
             fuels.add(new Fuel(randomFloatX,randomFloatY));
             fuelGeneratorRectangleList.add(new Rectangle(randomFloatX, randomFloatY,30,30));
         }
