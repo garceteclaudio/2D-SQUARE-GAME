@@ -2,6 +2,7 @@ package ar.com.square2d.screens;
 
 
 import ar.com.square2d.gameobjects.*;
+import ar.com.square2d.utils.DIMENSION;
 import ar.com.square2d.utils.Render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -23,8 +24,8 @@ public class GameScreen implements Screen {
     private BlockGenerator blockGenerator;
     private Hub hub;
 
-    private static final int SCREEN_WIDTH = 800;
-    private static final int SCREEN_HEIGHT = 600;
+    private static final int SCREEN_WIDTH = DIMENSION.WIDTH;
+    private static final int SCREEN_HEIGHT = DIMENSION.HEIGHT;
 
     public GameScreen(MyGame game) {
         this.game = game;
@@ -48,7 +49,7 @@ public class GameScreen implements Screen {
         blockGenerator = new BlockGenerator(12, 12, 40, 0, yPositions);
 
         enemyGenerator = new EnemyGenerator(5);
-        fuelGenerator = new FuelGenerator(5);
+        fuelGenerator = new FuelGenerator(5, player);
         hub = new Hub(this.batch, player);
     }
 
