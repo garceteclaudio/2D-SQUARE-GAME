@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Car extends GameObject {
+public class Player extends GameObject {
     private float xPosition;
     private float yPosition;
     private float velocity;
@@ -17,14 +17,14 @@ public class Car extends GameObject {
     private static final float width = 40;
     private static final int SCREEN_WIDTH = DIMENSION.WIDTH;
     private static final int SCREEN_HEIGHT = DIMENSION.HEIGHT;
-    private Rectangle carRectangle;
+    private Rectangle playerRectangle;
 
-    public Car() {
+    public Player() {
         xPosition = 350;
         yPosition = 240;
         velocity = 350;
         shapeRenderer = new ShapeRenderer();
-        carRectangle = new Rectangle(xPosition, yPosition, width, height);
+        playerRectangle = new Rectangle(xPosition, yPosition, width, height);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Car extends GameObject {
         }
 
         // Actualiza la posición del rectángulo del coche
-        carRectangle.setPosition(xPosition, yPosition);
+        playerRectangle.setPosition(xPosition, yPosition);
     }
 
     @Override
@@ -79,12 +79,12 @@ public class Car extends GameObject {
     public void checkCollisionWithBlock(Block block) {
         Rectangle blockRectangle = new Rectangle(block.getxPosition(), block.getyPosition(), block.getWidth(), block.getHeight());
 
-        if (carRectangle.overlaps(blockRectangle)) {
+        if (playerRectangle.overlaps(blockRectangle)) {
             // Calcula las posiciones relativas
-            float carLeft = carRectangle.getX();
-            float carRight = carRectangle.getX() + carRectangle.getWidth();
-            float carTop = carRectangle.getY() + carRectangle.getHeight();
-            float carBottom = carRectangle.getY();
+            float carLeft = playerRectangle.getX();
+            float carRight = playerRectangle.getX() + playerRectangle.getWidth();
+            float carTop = playerRectangle.getY() + playerRectangle.getHeight();
+            float carBottom = playerRectangle.getY();
 
             float blockLeft = blockRectangle.getX();
             float blockRight = blockRectangle.getX() + blockRectangle.getWidth();
@@ -103,7 +103,7 @@ public class Car extends GameObject {
             if (minOverlapX < minOverlapY) {
                 if (overlapLeft < overlapRight) {
                     // Colisión desde la izquierda
-                    xPosition = blockLeft - carRectangle.getWidth();
+                    xPosition = blockLeft - playerRectangle.getWidth();
                 } else {
                     // Colisión desde la derecha
                     xPosition = blockRight;
@@ -114,12 +114,12 @@ public class Car extends GameObject {
                     yPosition = blockTop;
                 } else {
                     // Colisión desde arriba
-                    yPosition = blockBottom - carRectangle.getHeight();
+                    yPosition = blockBottom - playerRectangle.getHeight();
                 }
             }
 
             // Actualiza la posición del rectángulo del coche después de la colisión
-            carRectangle.setPosition(xPosition, yPosition);
+            playerRectangle.setPosition(xPosition, yPosition);
         }
     }
 
@@ -127,14 +127,14 @@ public class Car extends GameObject {
     public void checkCollisionWithEnemy(Enemy enemy) {
         Rectangle enemyRectangle = new Rectangle(enemy.getxPosition(), enemy.getyPosition(), 40, 40);
 
-        if (carRectangle.overlaps(enemyRectangle)) {
+        if (playerRectangle.overlaps(enemyRectangle)) {
             System.out.println("Colisión con enemigo detectada!!!");
 
             // Calcula las posiciones relativas
-            float carLeft = carRectangle.getX();
-            float carRight = carRectangle.getX() + carRectangle.getWidth();
-            float carTop = carRectangle.getY() + carRectangle.getHeight();
-            float carBottom = carRectangle.getY();
+            float carLeft = playerRectangle.getX();
+            float carRight = playerRectangle.getX() + playerRectangle.getWidth();
+            float carTop = playerRectangle.getY() + playerRectangle.getHeight();
+            float carBottom = playerRectangle.getY();
 
             float enemyLeft = enemyRectangle.getX();
             float enemyRight = enemyRectangle.getX() + enemyRectangle.getWidth();
@@ -153,7 +153,7 @@ public class Car extends GameObject {
             if (minOverlapX < minOverlapY) {
                 if (overlapLeft < overlapRight) {
                     // Colisión desde la izquierda
-                    xPosition = enemyLeft - carRectangle.getWidth();
+                    xPosition = enemyLeft - playerRectangle.getWidth();
                 } else {
                     // Colisión desde la derecha
                     xPosition = enemyRight;
@@ -164,12 +164,12 @@ public class Car extends GameObject {
                     yPosition = enemyTop;
                 } else {
                     // Colisión desde arriba
-                    yPosition = enemyBottom - carRectangle.getHeight();
+                    yPosition = enemyBottom - playerRectangle.getHeight();
                 }
             }
 
             // Actualiza la posición del rectángulo del coche después de la colisión
-            carRectangle.setPosition(xPosition, yPosition);
+            playerRectangle.setPosition(xPosition, yPosition);
         }
     }
 
@@ -182,7 +182,7 @@ public class Car extends GameObject {
         return yPosition;
     }
 
-    public Rectangle getCarRectangle() {
-        return carRectangle;
+    public Rectangle getPlayerRectangle() {
+        return playerRectangle;
     }
 }

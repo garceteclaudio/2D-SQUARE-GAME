@@ -56,9 +56,9 @@ public class EnemyGenerator extends GameObject{
         return new Color(red, green, blue, 1.0f); // Alfa (opacidad) es 1.0 (totalmente opaco)
     }
 
-    public void checkCollisionsWithCar(Car car) {
+    public void checkCollisionsWithPlayer(Player player) {
         for (Enemy enemy : enemies) {
-            car.checkCollisionWithEnemy(enemy);
+            player.checkCollisionWithEnemy(enemy);
         }
     }
 

@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
     private ShapeRenderer shapeRenderer;
     private SpriteBatch batch;
     private BitmapFont font;
-    private Car car;
+    private Player player;
     private EnemyGenerator enemyGenerator;
     private FuelGenerator fuelGenerator;
     private BlockGenerator blockGenerator;
@@ -41,7 +41,7 @@ public class GameScreen implements Screen {
         font.setColor(Color.WHITE);
         font.getData().setScale(2);
 
-        car = new Car();
+        player = new Player();
 
         // Define block configuration
         int[] yPositions = {400, 100,200, 500};
@@ -49,7 +49,7 @@ public class GameScreen implements Screen {
 
         enemyGenerator = new EnemyGenerator(5);
         fuelGenerator = new FuelGenerator(5);
-        hub = new Hub(this.batch, car);
+        hub = new Hub(this.batch, player);
     }
 
     @Override
@@ -58,23 +58,23 @@ public class GameScreen implements Screen {
         Render.limpiarPantalla();
 
         camera.update();
-        car.update(deltaTime);
+        player.update(deltaTime);
         enemyGenerator.update(deltaTime);
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            car.render();
+            player.render();
             enemyGenerator.render();
             fuelGenerator.render();
             blockGenerator.render();
         shapeRenderer.end();
 
         // Handle collisions
-        fuelGenerator.checkColissionWithPlayer(car.getCarRectangle());
+        fuelGenerator.checkColissionWithPlayer(player.getPlayerRectangle());
         for (Block block : blockGenerator.getBlocks()) {
-            car.checkCollisionWithBlock(block);
+            player.checkCollisionWithBlock(block);
         }
-        enemyGenerator.checkCollisionsWithCar(car);
+        enemyGenerator.checkCollisionsWithPlayer(player);
         enemyGenerator.checkCollisionsWithBlocks(blockGenerator.getBlocks());
 
         batch.begin();
@@ -106,7 +106,7 @@ public class GameScreen implements Screen {
     public void dispose() {
         font.dispose();
         shapeRenderer.dispose();
-        car.dispose();
+        player.dispose();
         blockGenerator.dispose();
         enemyGenerator.dispose();
         fuelGenerator.dispose();
