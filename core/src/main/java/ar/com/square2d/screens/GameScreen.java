@@ -48,7 +48,7 @@ public class GameScreen implements Screen {
         blockGenerator = new BlockGenerator(12, 12, 40, 0, yPositions);
 
         enemyGenerator = new EnemyGenerator(5);
-        fuelGenerator = new FuelGenerator(5);
+        fuelGenerator = new FuelGenerator(5, player);
         hub = new Hub(this.batch, player);
     }
 

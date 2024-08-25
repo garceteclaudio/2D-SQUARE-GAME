@@ -10,8 +10,10 @@ import static com.badlogic.gdx.math.MathUtils.random;
 public class FuelGenerator extends GameObject{
     private ArrayList<Fuel> fuels;
     private ArrayList<Rectangle> fuelGeneratorRectangleList;
+    private Player player;
 
-    public FuelGenerator(int fuelQuantity){
+    public FuelGenerator(int fuelQuantity, Player player){
+        this.player = player;
         fuels = new ArrayList<Fuel>();
         fuelGeneratorRectangleList = new ArrayList<Rectangle>();
         for (int i=1; i<=fuelQuantity;i++){
@@ -30,6 +32,7 @@ public class FuelGenerator extends GameObject{
             Fuel fuel = fuelIterator.next();
             if (rectangle.overlaps(playerRectangle)) {
                 // Elimina el cuadrado colisionado de las listas
+                player.setCountCollectable(1);
                 rectangleIterator.remove();
                 fuelIterator.remove();
             }

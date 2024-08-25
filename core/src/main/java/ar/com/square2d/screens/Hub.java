@@ -25,10 +25,12 @@ public class Hub {
         String fpsText = String.format("FPS: %d", fps);
         String xPosText = String.format("X: %.2f", this.player.getxPosition());
         String yPosText = String.format("Y: %.2f", this.player.getyPosition());
+        String collectable = String.format("Fuel: %.0f", this.player.getCountCollectable());
 
         font.draw(this.batch, fpsText, 10, DIMENSION.HEIGHT - 10);
         font.draw(this.batch, xPosText, 10, DIMENSION.HEIGHT - 30);
         font.draw(this.batch, yPosText, 10, DIMENSION.HEIGHT - 50);
+        font.draw(this.batch, collectable, 10, DIMENSION.HEIGHT - 70);
     }
 
 
